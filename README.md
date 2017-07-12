@@ -19,7 +19,7 @@ Available commands are:
     stop
 ```
 
- - Deploy command accepts a hash from the github repo - awdaw.  It will clone the code from that hash locally, build the image and create a docker container for the app to run in and link to a postgres container.
+ - Deploy command accepts a hash from the github repo - https://github.com/DaveBlooman/rubydockerapp.  It will clone the code from that hash locally, build the image and create a docker container for the app to run in and link to a postgres container.
 
  - Stop command will completely remove the containers created.
 
