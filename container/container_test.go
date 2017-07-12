@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestContainerStop(t *testing.T) {
+func TestContainers(t *testing.T) {
 	client, err := utils.NewDockerClient()
 	if err != nil {
 		t.Error(err)
@@ -26,9 +26,9 @@ func TestContainerStop(t *testing.T) {
 	}
 
 	err = Start(client, opts)
-	assert.Nil(t, err)
+	assert.NoError(t, err)
 	err = Stop(client, hash)
-	assert.Nil(t, err)
+	assert.NoError(t, err)
 
 	containers, err := listContainers(hash, client)
 	assert.NoError(t, err, "list containers")

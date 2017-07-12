@@ -2,6 +2,8 @@ package command
 
 import (
 	"log"
+	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -19,14 +21,20 @@ type DeployCommand struct {
 func (c *DeployCommand) Run(args []string) int {
 
 	if len(args) == 0 {
-		log.Println("please provide a hash from the repo github.com/DaveBlooman/ruby-app ")
+		log.Println("please provide a hash from the repo github.com/DaveBlooman/rubydockerapp")
 		return 1
 	}
 
 	hash := args[0]
-	directory := "/Users/dblooman/go/src/github.com/DaveBlooman/deliveroo/app-" + hash + time.Now().String()
 
-	err := clone.Fetch(directory, hash)
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		log.Println(err)
+		return 1
+	}
+	directory := dir + "/" + hash + time.Now().String()
+
+	err = clone.Fetch(directory, hash)
 	if err != nil {
 		log.Printf("Unable to clone snapshot - %v", err)
 		return 1
@@ -54,8 +62,9 @@ func (c *DeployCommand) Run(args []string) int {
 			PublishAllPorts: true,
 		},
 		Config: &docker.Config{
-			Image:  "postgres:9.5.3",
-			Labels: map[string]string{hash: "true"},
+			Hostname: "localhost",
+			Image:    "postgres:9.5.3",
+			Labels:   map[string]string{hash: "true"},
 		},
 	})
 	if err != nil {
@@ -70,7 +79,7 @@ func (c *DeployCommand) Run(args []string) int {
 			PublishAllPorts: true,
 		},
 		Config: &docker.Config{
-			Hostname: "localhost",
+			Hostname: "deliveroo.localhost",
 			Image:    imageName,
 			Labels:   map[string]string{hash: "true"},
 		},
@@ -80,12 +89,11 @@ func (c *DeployCommand) Run(args []string) int {
 		return 1
 	}
 
-	// err = os.Remove(directory + "/")
-	// if err != nil {
-	// 	log.Println(err)
-	// 	log.Println("Failed to cleanup directory")
-	// 	return 1
-	// }
+	err = os.RemoveAll(directory)
+	if err != nil {
+		log.Println("Failed to cleanup directory")
+		return 1
+	}
 
 	return 0
 }
