@@ -8,7 +8,7 @@ import (
 )
 
 func CreateContainers(hash, directory string, client *docker.Client) error {
-	imageName := "rubyapp:" + hash
+	imageName := "go-app:" + hash
 	err := builder.Build(directory, hash, imageName, client)
 	if err != nil {
 		return err
@@ -23,6 +23,7 @@ func CreateContainers(hash, directory string, client *docker.Client) error {
 		Config: &docker.Config{
 			Hostname: "localhost",
 			Image:    "postgres:9.5.3",
+			Env:      []string{"POSTGRES_USER=postgres", "POSTGRES_PASSWORD=postgres", "POSTGRES_DB=test", "- PGPASSWORD=postgres"},
 			Labels:   map[string]string{hash: "true"},
 		},
 	})
@@ -32,13 +33,13 @@ func CreateContainers(hash, directory string, client *docker.Client) error {
 	}
 
 	err = Start(client, docker.CreateContainerOptions{
-		Name: "ruby-app-" + hash,
+		Name: "go-app-" + hash,
 		HostConfig: &docker.HostConfig{
-			Links:           []string{dbName + ":postgres"},
+			Links:           []string{dbName + ":db"},
 			PublishAllPorts: true,
 		},
 		Config: &docker.Config{
-			Hostname: "deliveroo.localhost",
+			Hostname: "localhost",
 			Image:    imageName,
 			Labels:   map[string]string{hash: "true"},
 		},

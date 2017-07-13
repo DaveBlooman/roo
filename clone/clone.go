@@ -12,7 +12,7 @@ import (
 func Fetch(directory, hash string) error {
 
 	r, err := git.PlainClone(directory, false, &git.CloneOptions{
-		URL:      "https://github.com/DaveBlooman/rubydockerapp",
+		URL:      "https://github.com/DaveBlooman/go-app",
 		Progress: os.Stdout,
 	})
 	if err != nil {

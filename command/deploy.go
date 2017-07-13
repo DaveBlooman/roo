@@ -19,7 +19,7 @@ type DeployCommand struct {
 func (c *DeployCommand) Run(args []string) int {
 
 	if len(args) == 0 {
-		log.Println("please provide a hash from the repo github.com/DaveBlooman/rubydockerapp")
+		log.Println("please provide a hash from the repo github.com/DaveBlooman/go-app")
 		return 1
 	}
 
