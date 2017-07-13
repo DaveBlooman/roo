@@ -1,4 +1,9 @@
-# Docker Tool
+# Dave's Docker Tool
+
+This tool will retrieve the code for a given hash from the github repo - https://github.com/DaveBlooman/rubydockerapp.  This will build the hash and then create a docker image based on the Dockerfile in that repo.  A blank Postgres database will also be started along side this container and linked to the application container.  You can deploy different commit hashes, but you can only deploy a commit once.
+
+### Requirements
+  - Up to date version of Docker
 
 ### Installation
 

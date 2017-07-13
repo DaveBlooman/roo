@@ -8,7 +8,7 @@ import (
 
 func Stop(client *docker.Client, hash string) error {
 
-	containers, err := listContainers(hash, client)
+	containers, err := ListContainers(hash, client)
 	if err != nil {
 		log.Println("Unable to list containers")
 		return err
@@ -32,7 +32,7 @@ func Stop(client *docker.Client, hash string) error {
 	return nil
 }
 
-func listContainers(hash string, client *docker.Client) ([]docker.APIContainers, error) {
+func ListContainers(hash string, client *docker.Client) ([]docker.APIContainers, error) {
 
 	hashContainers := map[string][]string{
 		"label": []string{

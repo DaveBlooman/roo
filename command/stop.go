@@ -31,12 +31,12 @@ func (c *StopCommand) Run(args []string) int {
 }
 
 func (c *StopCommand) Synopsis() string {
-	return ""
+	return "Stops all containers for a given hash"
 }
 
 func (c *StopCommand) Help() string {
 	helpText := `
-
+There is a single argument to the deploy command, a git hash.
 `
 	return strings.TrimSpace(helpText)
 }

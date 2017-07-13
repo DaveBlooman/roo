@@ -30,7 +30,7 @@ func TestContainers(t *testing.T) {
 	err = Stop(client, hash)
 	assert.NoError(t, err)
 
-	containers, err := listContainers(hash, client)
+	containers, err := ListContainers(hash, client)
 	assert.NoError(t, err, "list containers")
 	assert.Equal(t, 0, len(containers))
 
