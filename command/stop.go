@@ -4,8 +4,8 @@ import (
 	"log"
 	"strings"
 
-	container "github.com/DaveBlooman/deliveroo/container"
-	"github.com/DaveBlooman/deliveroo/docker"
+	container "github.com/DaveBlooman/roo/container"
+	"github.com/DaveBlooman/roo/docker"
 )
 
 type StopCommand struct {

@@ -7,9 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/DaveBlooman/deliveroo/clone"
-	container "github.com/DaveBlooman/deliveroo/container"
-	"github.com/DaveBlooman/deliveroo/docker"
+	"github.com/DaveBlooman/roo/clone"
+	container "github.com/DaveBlooman/roo/container"
 )
 
 type DeployCommand struct {

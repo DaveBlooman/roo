@@ -1,4 +1,4 @@
 package main
 
-const Name string = "deliveroo"
+const Name string = "roo"
 const Version string = "0.1.0"

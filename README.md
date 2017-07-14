@@ -17,7 +17,7 @@ make build
 ### Usage
 
 ```sh
-Usage: deliveroo [--version] [--help] <command> [<args>]
+Usage: roo [--version] [--help] <command> [<args>]
 
 Available commands are:
     deploy

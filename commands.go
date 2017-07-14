@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/DaveBlooman/deliveroo/command"
+	"github.com/DaveBlooman/roo/command"
 	"github.com/mitchellh/cli"
 )
 
