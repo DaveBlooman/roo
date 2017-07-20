@@ -9,6 +9,7 @@ import (
 
 	"github.com/DaveBlooman/roo/clone"
 	container "github.com/DaveBlooman/roo/container"
+	"github.com/DaveBlooman/roo/docker"
 )
 
 type DeployCommand struct {
